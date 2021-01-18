@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/314465702463d86e7e67cb41d26b78e2950b80eb/img/banner.svg" width="1000">
+
 # Esp8266-debugger
 debugger for Esp8266 module
 
@@ -15,7 +17,6 @@ compile the code from `/Esp8266/` dir and upload it to your Esp8266, I recommend
 
 Enter your local Esp8266 address (IP: port)
 
-<img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/connect.png" width="250">
 
 You can use the keyboard Numpad and arrows to input the address.
 
