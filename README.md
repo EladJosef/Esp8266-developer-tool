@@ -38,5 +38,5 @@ You have 7 functions on the debug panel:
 now you can use the control panel to test your esp8266
 
 # todo
-[ ] connect functions to send function
-[ ] upload hotfix to esp8266 code
+- [ ] connect functions to send function
+- [ ] upload hotfix to esp8266 code
