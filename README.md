@@ -9,10 +9,7 @@ run with npm
 npm i
 npm start
 ```
-
-compile the code from `/Esp8266/` dir and upload it to your Esp8266
-
-I recommend using the `Arduino IDE` to compile and upload
+compile the code from `/Esp8266/` dir and upload it to your Esp8266, I recommend using the `Arduino IDE` to compile and upload
 
 # usage
 
