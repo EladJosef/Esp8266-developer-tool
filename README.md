@@ -2,9 +2,7 @@
 debugger for Esp8266 module
 
 # install
-Go to `/app/` dir and open terminal
-
-run with npm
+Go to `/app/` dir, open terminal and run with npm
 ```node
 npm i
 npm start
