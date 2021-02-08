@@ -36,7 +36,3 @@ You have 7 functions on the debug panel:
 <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/edit-macro.png" width="250">
 
 now you can use the control panel to test your esp8266
-
-# todo
-- [ ] connect functions to send function
-- [ ] upload hotfix to esp8266 code

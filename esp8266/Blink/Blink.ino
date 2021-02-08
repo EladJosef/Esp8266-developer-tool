@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>                               //| Include the Wi-Fi library
-#include <farmAPI.h>                                  // |Include the farm functions
+
                                                      //  |
-const char* SSID     = "Julius Caesar WiFi";        //   |The SSID (name) of the Wi-Fi network you want to connect to
+const char* SSID     = "Julius Caesar";             //   |The SSID (name) of the Wi-Fi network you want to connect to
 const char* PASSWORD = "12345678e";                //    |The password of the Wi-Fi network
 const int   PORT     = 8500;                      //     |
 bool blinked = true;                             //      |
@@ -37,7 +37,23 @@ char* commend_msg(String msg)
   {
     return "yes";
   }
-  return "error-v1";
+  if(msg.equals("A"))
+  {
+    return "Option a";
+  }
+  if(msg.equals("B"))
+  {
+    return "Option b";
+  }
+  if(msg.equals("C"))
+  {
+    return "Option c";
+  }
+  if(msg.equals("D"))
+  {
+    return "Option d";
+  }
+  return "error-v1-unknown-command";
 }
 
 void setup() {

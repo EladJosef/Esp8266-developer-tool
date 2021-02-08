@@ -5,7 +5,7 @@
   let just_pressed = false;
   let key;
   let keyCode;
-  let is_connect = true;
+  let is_connect = false;
   let has_click = false;
 
   function handleKeydown(event) {
@@ -78,6 +78,7 @@
     if (msg === "yes") {
       console.log("Esp8266 are on !");
       is_connect = true;
+      has_click = false;
     } else {
       console.log("Esp8266 dosn't found !");
       is_connect = false;

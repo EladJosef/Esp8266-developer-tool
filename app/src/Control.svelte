@@ -27,7 +27,7 @@
   function send() {
     if (temp !== "") {
       massages = [...massages, [temp, true]];
-      massages = [...massages, [temp, false]];
+      connect(temp);
       temp = "";
       let element = document.getElementById("chat");
       element.scrollTop = element.scrollHeight + 1000;
@@ -85,6 +85,24 @@
     clearInterval(scroll_auto_int);
     dispatch("is_connect", false);
   }
+
+  function accept(data, tcp) {
+    var enc = new TextDecoder("utf-8");
+    let msg = enc.decode(data["buffer"]);
+    massages = [...massages, [msg, false]];
+    tcp.destroy();
+  }
+
+  function connect(msg) {
+    const net = window.require("net");
+    const ip = `${address[0]}.${address[1]}.${address[2]}.${address[3]}`;
+    const port = Number(address[4]);
+    let tcp = new net.Socket();
+    tcp.connect(port, ip, function () {
+      tcp.write(msg);
+    });
+    tcp.on("data", (data) => accept(data, tcp));
+  }
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
@@ -109,7 +127,8 @@
         <tr>
           <td
             style="background-color:{auto_scroll ? '#4CAF50' : '#30475e'}"
-            on:click={auto_scroll_me}>Auto Scroll
+            on:click={auto_scroll_me}
+            >Auto Scroll
           </td>
           <td
             style="background-color:{edit_macro ? '#f05454' : '#30475e'}"
