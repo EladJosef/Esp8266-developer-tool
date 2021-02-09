@@ -9,6 +9,9 @@
   let has_click = false;
 
   function handleKeydown(event) {
+    if (is_connect) {
+      return;
+    }
     key = event.key;
     keyCode = event.keyCode;
 
