@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+const path = require('path')
 
 app.on('ready', () => {
 	window = new BrowserWindow({
@@ -8,7 +9,7 @@ app.on('ready', () => {
 		webPreferences: { nodeIntegration: true }
 	})
 
-	window.loadFile('index.html')
+	window.loadFile(`${path.join(__dirname, '/index.html')}`)
 })
 
 app.on('window-all-closed', () => app.quit())
