@@ -29,9 +29,15 @@ You have 7 functions on the debug panel:
 - logfile : save the log file of your esp8266 communication 
 - exit : disconnect esp8266
 
+<p float="left">
+  <kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/Control.png" width="250">
+    </kbd>
+  <kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/edit-macro.png" width="250">
+    </kbd>
+</p>
 
-<img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/Control.png" width="250">
-<img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/edit-macro.png" width="250">
 
 now you can use the control panel to test your esp8266
 
