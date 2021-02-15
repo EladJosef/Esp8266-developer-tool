@@ -47,6 +47,6 @@ You have 7 functions on the debug panel:
 
 now you can use the control panel to test your esp8266
 
-## Futures features
+## Futures features for 1.2.0v
 - [ ] Formating logfile output 
 - [ ] Add menu for later features 
