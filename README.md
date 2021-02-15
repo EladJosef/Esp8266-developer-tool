@@ -31,11 +31,17 @@ You have 7 functions on the debug panel:
 
 <p float="left">
   <kbd>
-  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/Control.png" width="250">
-    </kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/connect.png" width="200">
+  </kbd>
   <kbd>
-  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/edit-macro.png" width="250">
-    </kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/Control.png" width="200">
+  </kbd>
+  <kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/edit-macro.png" width="200">
+  </kbd>
+  <kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/log.png" width="200">
+  </kbd>
 </p>
 
 
