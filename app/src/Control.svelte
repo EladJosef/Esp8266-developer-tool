@@ -4,11 +4,20 @@
   let massages = [];
   let temp = "";
   let auto_scroll = true;
-  let macros = ["A", "B", "C", "D"];
+  let macros = ["A", "B", "C", "D", "E"];
   let edit_macro = false;
 
-  console.log(address);
   const dispatch = createEventDispatcher();
+
+  Array.prototype.clear_diracters = function () {
+    for (var i = 0; i < this.length; i++) {
+      this[i] = this[i][1]
+        ? this[i][0] + " => send at " + this[i][2]
+        : this[i][0] + " => receive at " + this[i][2];
+    }
+    console.log(this);
+    return this;
+  };
 
   function updateScroll() {
     if (auto_scroll) {
@@ -26,12 +35,15 @@
 
   function send() {
     if (temp !== "") {
-      massages = [...massages, [temp, true]];
+      massages = [...massages, [temp, true, time()]];
       connect(temp);
       temp = "";
       let element = document.getElementById("chat");
       element.scrollTop = element.scrollHeight + 1000;
     }
+  }
+  function clear() {
+    massages = [];
   }
   function handleKeydown(event) {
     if (event.key === "Enter") {
@@ -51,7 +63,10 @@
   }
 
   function save_log_file() {
-    var file = new Blob([massages], { type: "text/plain" });
+    let log = massages.clear_diracters();
+    var file = new File([log.join("\n")], {
+      type: "text/plain",
+    });
     if (window.navigator.msSaveOrOpenBlob)
       window.navigator.msSaveOrOpenBlob(file, "log.txt");
     else {
@@ -80,16 +95,19 @@
   function m4() {
     temp = macros[3];
   }
+  function m5() {
+    temp = macros[4];
+  }
 
   function exit() {
     clearInterval(scroll_auto_int);
-    dispatch("is_connect", false);
+    dispatch("menu_index", 0);
   }
 
   function accept(data, tcp) {
     var enc = new TextDecoder("utf-8");
     let msg = enc.decode(data["buffer"]);
-    massages = [...massages, [msg, false]];
+    massages = [...massages, [msg, false, time()]];
     tcp.destroy();
   }
 
@@ -106,30 +124,21 @@
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
-<div class="title">
-  <h2>Control esp8266</h2>
-</div>
-<div class="container">
-  <div class="chat" id="chat">
-    {#each massages as msg}
-      <div class="massage {msg[1] ? 'massage1' : 'massage2'}">
-        <div class="msg-data">{time()}</div>
-        Data : {msg[0]}
-      </div>
-    {/each}
+<div id="frame">
+  <div class="titel">
+    <h2>ESP8266 massages debugger</h2>
   </div>
-  <div class="control-me">
-    <div class="upper">
-      <h1>Settings panel</h1>
-    </div>
-    <div class="downer">
-      <table>
+  <div class="seced-titel">
+    <h2>control panel</h2>
+  </div>
+  <div class="macros-panel">
+    <table style="width: 100%;" class="fixed panel">
+      <tbody>
         <tr>
           <td
             style="background-color:{auto_scroll ? '#4CAF50' : '#30475e'}"
-            on:click={auto_scroll_me}
-            >Auto Scroll
-          </td>
+            on:click={auto_scroll_me}>Auto Scroll</td
+          >
           <td
             style="background-color:{edit_macro ? '#f05454' : '#30475e'}"
             class="set-macro"
@@ -138,73 +147,132 @@
         </tr>
         <tr>
           {#if edit_macro}
-            <td class="do-macro"><input bind:value={macros[0]} /></td>
-            <td class="do-macro"><input bind:value={macros[1]} /></td>
+            <td><input bind:value={macros[0]} /></td>
+            <td><input bind:value={macros[1]} /></td>
           {:else}
-            <td class="do-macro" on:click={m1}>{macros[0]}</td>
-            <td class="do-macro" on:click={m2}>{macros[1]}</td>
+            <td on:click={m1}>{macros[0]}</td>
+            <td on:click={m2}>{macros[1]}</td>
           {/if}
         </tr>
         <tr>
           {#if edit_macro}
-            <td class="do-macro"><input bind:value={macros[2]} /></td>
-            <td class="do-macro"><input bind:value={macros[3]} /></td>
+            <td><input bind:value={macros[2]} /></td>
+            <td><input bind:value={macros[3]} /></td>
           {:else}
-            <td class="do-macro" on:click={m3}>{macros[2]}</td>
-            <td class="do-macro" on:click={m4}>{macros[3]}</td>
+            <td on:click={m3}>{macros[2]}</td>
+            <td on:click={m4}>{macros[3]}</td>
           {/if}
         </tr>
         <tr>
-          <td class="log-file" on:click={save_log_file}>Save to log file</td>
-          <td class="exit" on:click={exit}>Exit</td>
+          {#if edit_macro}
+            <td><input bind:value={macros[4]} /></td>
+          {:else}
+            <td on:click={m5}>{macros[4]}</td>
+          {/if}
+          <td class="clear" on:click={clear}>clear</td>
         </tr>
-      </table>
-    </div>
+        <tr>
+          <td class="log-file" on:click={save_log_file}>Save to log file</td>
+          <td class="exit" on:click={exit}>Return</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</div>
-<div class="footer">
-  <input class="input_text" type="text" bind:value={temp} />
-  <button class="send" on:click={send}>Send</button>
+  <div class="msg-panel chat" id="chat">
+    {#each massages as msg}
+      <div class="massage {msg[1] ? 'massage1' : 'massage2'}">
+        <div class="msg-data">{time()}</div>
+        Data : {msg[0]}
+      </div>
+    {/each}
+  </div>
+  <div class="send-msg-area">
+    <input class="input_text" type="text" bind:value={temp} />
+    <button class="send" on:click={send}>Send</button>
+  </div>
 </div>
 
 <style>
-  h1 {
+  #frame {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.9fr 0.8fr 1.1fr 1.1fr 1.1fr 1.1fr 0.9fr;
+    gap: 0 0;
+    height: 100vh;
+    background-color: #222831;
+    grid-template-areas:
+      "titel titel titel titel"
+      "msg-panel msg-panel seced-titel seced-titel"
+      "msg-panel msg-panel macros-panel macros-panel"
+      "msg-panel msg-panel macros-panel macros-panel"
+      "msg-panel msg-panel macros-panel macros-panel"
+      "msg-panel msg-panel macros-panel macros-panel"
+      "send-msg-area send-msg-area send-msg-area send-msg-area";
+  }
+  .titel {
+    grid-area: titel;
+    display: relative;
+    text-align: center;
+    height: 10vh;
+    width: 100%;
+    background-color: #222831;
+    color: #dddddd;
     font-family: "Poppins", sans-serif;
     font-size: 5vh;
-  }
-  h2 {
-    font-family: "Poppins", sans-serif;
-    color: #dddddd;
-    font-size: 8vh;
-    text-align: center;
-    margin-bottom: 15vh;
-    margin-top: 5vh;
-  }
-  table {
-    height: 60vh;
-    font-size: 3vh;
-  }
-  table:hover {
-    cursor: pointer;
-  }
-  td {
-    width: 23.85vw;
-    background-color: #30475e;
-  }
-  div.upper {
-    background-color: #f3f3f3;
-    grid-area: 1 / 3 / 2 / 5;
-    padding: 1vh;
-    margin-bottom: -2vw;
-    color: #222831;
     -webkit-app-region: drag;
   }
-  div.downer {
-    grid-area: 2 / 3 / 4 / 5;
-    background-color: #222831;
+  .titel h2 {
+    position: relative;
+    top: -6vh;
+    align-self: center;
+  }
+  .seced-titel {
+    grid-area: seced-titel;
+    background-color: #f1f1f1;
+    color: #222831;
+    -webkit-app-region: drag;
+    font-size: 2.5vh;
     font-family: "Poppins", sans-serif;
+  }
+  .send-msg-area {
+    grid-area: send-msg-area;
+  }
+  .msg-panel {
+    grid-area: msg-panel;
+    background-color: #dddddd;
     color: #dddddd;
-    min-height: 75vh;
+    font-size: 5vh;
+    font-family: "Montserrat", sans-serif;
+    direction: rtl;
+    overflow: auto;
+  }
+  .macros-panel {
+    grid-area: macros-panel;
+    background-color: #222831;
+  }
+  table.fixed {
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+  }
+  .panel td {
+    background-color: #30475e;
+    color: #f1f1f1;
+    font-size: 3vh;
+    font-family: "Poppins", sans-serif;
+  }
+  .panel td:hover {
+    cursor: pointer;
+    filter: brightness(1.1);
+  }
+  .clear:hover {
+    background-color: #54b2f0;
+  }
+  .exit:hover {
+    background-color: #f05454;
+  }
+  .log-file:hover {
+    background-color: #f09d54;
   }
   .input_text {
     font-family: "Poppins", sans-serif;
@@ -217,47 +285,6 @@
     height: 6vh;
     font-size: 3vh;
   }
-  .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #222831;
-    color: #dddddd;
-    text-align: center;
-    -webkit-app-region: no-drag;
-  }
-  .title {
-    position: relative;
-    left: -5vw;
-    top: -5vh;
-    width: 110%;
-    background-color: #222831;
-    color: #dddddd;
-    text-align: center;
-    max-height: 25vh;
-    -webkit-app-region: drag;
-  }
-
-  div.chat {
-    width: 52vw;
-    margin-top: -20vh;
-    margin-left: -2vw;
-    position: relative;
-    font-family: "Montserrat", sans-serif;
-    font-size: 5vh;
-    overflow-y: scroll;
-    overflow-x: hidden; /* Hide horizontal scrollbar */
-    max-height: 74vh;
-    min-height: 74vh;
-    grid-area: msg-part;
-  }
-  div.control-me {
-    display: inline;
-    grid-area: buttons-p;
-    margin-top: -20vh;
-    min-height: 75vh;
-  }
   button.send {
     background-color: #222831;
     color: #dddddd;
@@ -267,47 +294,37 @@
     width: 100%;
     height: 6vh;
   }
-  .exit:hover {
-    background-color: #f05454;
-  }
-  .log-file:hover {
-    background-color: #f09d54;
-  }
-  .set-macro:hover {
-    background-color: #f05454;
-    color: #222831;
-  }
-  .do-macro:hover {
-    background-color: #549df0;
-    color: #222831;
-  }
-  .massage {
-    font-family: "Poppins", sans-serif;
-    color: #ffffff;
-    word-wrap: break-word;
-    width: 100%;
-  }
   .massage1 {
     background-color: #30475e;
+    border-style: solid;
+    border-width: 1px;
+    word-wrap: break-word;
+    border-color: #222831;
   }
   .massage2 {
     background-color: #f05454;
+    border-style: solid 1px;
+    border-width: 1px;
+    word-wrap: break-word;
+    border-color: #222831;
   }
-  .msg-data {
-    color: #dddddd;
+  /* width */
+  ::-webkit-scrollbar {
+    width: 1vh;
   }
 
-  div.container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      "msg-part msg-part buttons-p buttons-p"
-      "msg-part msg-part buttons-p buttons-p"
-      "msg-part msg-part buttons-p buttons-p";
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
   }
-  ::-webkit-scrollbar {
-    width: 0vh;
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 </style>
