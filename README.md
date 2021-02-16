@@ -25,7 +25,8 @@ You have 7 functions on the debug panel:
 - send: send a string to the esp8266 and print result
 - auto scroll: scroll automatically to the end of the log 
 - edit macros: give you the option to edit macros 
-- four macros buttons: macro is a const string that you can reuse instead of retyping every time 
+- five macros buttons: macro is a const string that you can reuse instead of retyping every time 
+- clear : clear dialogue from screen
 - logfile : save the log file of your esp8266 communication 
 - exit : disconnect esp8266
 
@@ -46,7 +47,15 @@ You have 7 functions on the debug panel:
 
 
 now you can use the control panel to test your esp8266
+## What's new ?
+- [X] Formating logfile output 
+- [X] Add menu for later features 
+- [X] design improvement (css)
+- [X] one more macro button
+- [X] clear button
 
-## Futures features for 1.2.0v
-- [ ] Formating logfile output 
-- [ ] Add menu for later features 
+## Futures features for 1.2.1v
+- [ ] Logfile viewer
+
+
+
