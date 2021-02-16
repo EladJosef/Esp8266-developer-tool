@@ -1,5 +1,6 @@
 <script>
   import Control from "./Control.svelte";
+  import Menu from "./Menu.svelte";
   export let address;
   let current = 0;
   let just_pressed = false;
@@ -105,7 +106,7 @@
 <svelte:window on:keydown={handleKeydown} />
 <main>
   {#if is_connect}
-    <Control on:is_connect={(event) => (is_connect = event.detail)} {address} />
+    <Menu on:is_connect={(event) => (is_connect = event.detail)} {address} />
   {:else}
     <h2>Connect esp8266</h2>
     <div style="margin-top: -10vh;">
