@@ -67,7 +67,9 @@ You have 2 functions on the log explorerr after open log-file:
 now you can use the control panel to test your esp8266
 
 ## What's new in 1.2.2v ?
+- [ ] Recode esp8266 code
 - [ ] Esp8266 code generator
+- [ ] Adding comments to esp8266 code and svelet files
 
 
 
