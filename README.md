@@ -54,8 +54,12 @@ now you can use the control panel to test your esp8266
 - [X] one more macro button
 - [X] clear button
 
-## Futures features for 1.2.1v
-- [ ] Logfile viewer
+## Futures features of 1.2.1v
+- [X] Logfile viewer
+- [X] Logfile view option
+- [X] Logfile statistics option
+- [X] Menu css improvment
+- [X] logfile improvment (time and statistics)
 
 
 

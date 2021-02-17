@@ -2,11 +2,12 @@
   import Control from "./Control.svelte";
   import Menu from "./Menu.svelte";
   export let address;
+  let debug = true;
   let current = 0;
   let just_pressed = false;
   let key;
   let keyCode;
-  let is_connect = false;
+  let is_connect = debug || false;
   let has_click = false;
 
   function handleKeydown(event) {
