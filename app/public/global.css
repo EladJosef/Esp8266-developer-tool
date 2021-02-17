@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
 
 html,
 body {
@@ -15,4 +16,15 @@ body {
 body {
   overflow: hidden;
   -webkit-app-region: no-drag;
+}
+
+.main-title-panel {
+  text-align: center;
+  height: 10vh;
+  background-color: #222831;
+  color: #dddddd;
+  font-family: "Poppins", sans-serif;
+  font-size: 6.5vh;
+  -webkit-app-region: drag;
+  vertical-align: center;
 }

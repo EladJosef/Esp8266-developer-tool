@@ -1,7 +1,7 @@
 {
   "name": "esp8266-debugger",
   "productName": "Esp8266 debugger",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Esp8266 debugger",
   "main": "public/main.js",
   "author": {
@@ -20,15 +20,15 @@
   },
   "build": {
     "mac": {
-    "icon": "./assets/icon/icon.icns"
-  },
+      "icon": "./assets/icon/icon.icns"
+    },
     "linux": {
-    "icon": "./assets/icon/icon.png"
-  },
+      "icon": "./assets/icon/icon.png"
+    },
     "win": {
-    "icon": "./assets/icon/icon.ico"
-  }
-},
+      "icon": "./assets/icon/icon.ico"
+    }
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
@@ -54,6 +54,7 @@
     "dialog": "^0.3.1",
     "remote": "^0.2.6",
     "rs": "0.0.1",
-    "sirv-cli": "^1.0.0"
+    "sirv-cli": "^1.0.0",
+    "svelte-file-dropzone": "0.0.15"
   }
 }

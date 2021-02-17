@@ -6,6 +6,25 @@
   let auto_scroll = true;
   let macros = ["A", "B", "C", "D", "E"];
   let edit_macro = false;
+  let statistics = {};
+  let send_time = 0;
+
+  statistics.send_msg = 0;
+  statistics.accept_msg = 0;
+
+  statistics.sum_time_between = 0;
+  statistics.address =
+    address[0] +
+    "." +
+    address[1] +
+    "." +
+    address[2] +
+    "." +
+    address[3] +
+    ":" +
+    address[4];
+
+  statistics.create_time = "";
 
   const dispatch = createEventDispatcher();
 
@@ -15,7 +34,6 @@
         ? this[i][0] + " => send at " + this[i][2]
         : this[i][0] + " => receive at " + this[i][2];
     }
-    console.log(this);
     return this;
   };
 
@@ -35,7 +53,9 @@
 
   function send() {
     if (temp !== "") {
-      massages = [...massages, [temp, true, time()]];
+      statistics.send_msg += 1;
+      send_time = Date.now();
+      massages = [...massages, [temp, true, send_time]];
       connect(temp);
       temp = "";
       let element = document.getElementById("chat");
@@ -64,16 +84,16 @@
 
   function save_log_file() {
     let log = massages.clear_diracters();
-    var file = new File([log.join("\n")], {
+    var file = new File([JSON.stringify(statistics) + "\n" + log.join("\n")], {
       type: "text/plain",
     });
     if (window.navigator.msSaveOrOpenBlob)
-      window.navigator.msSaveOrOpenBlob(file, "log.txt");
+      window.navigator.msSaveOrOpenBlob(file, "logData.log");
     else {
       var a = document.createElement("a"),
         url = URL.createObjectURL(file);
       a.href = url;
-      a.download = "log.txt";
+      a.download = "logData.log";
       document.body.appendChild(a);
       a.click();
       setTimeout(function () {
@@ -105,9 +125,12 @@
   }
 
   function accept(data, tcp) {
+    statistics.accept_msg += 1;
     var enc = new TextDecoder("utf-8");
     let msg = enc.decode(data["buffer"]);
-    massages = [...massages, [msg, false, time()]];
+    let aaccept_time = Date.now();
+    statistics.sum_time_between += aaccept_time - send_time;
+    massages = [...massages, [msg, false, aaccept_time]];
     tcp.destroy();
   }
 
@@ -125,10 +148,10 @@
 
 <svelte:window on:keydown={handleKeydown} />
 <div id="frame">
-  <div class="titel">
+  <div class="title">
     <h2>ESP8266 massages debugger</h2>
   </div>
-  <div class="seced-titel">
+  <div class="seced-title">
     <h2>control panel</h2>
   </div>
   <div class="macros-panel">
@@ -201,16 +224,16 @@
     height: 100vh;
     background-color: #222831;
     grid-template-areas:
-      "titel titel titel titel"
-      "msg-panel msg-panel seced-titel seced-titel"
+      "title title title title"
+      "msg-panel msg-panel seced-title seced-title"
       "msg-panel msg-panel macros-panel macros-panel"
       "msg-panel msg-panel macros-panel macros-panel"
       "msg-panel msg-panel macros-panel macros-panel"
       "msg-panel msg-panel macros-panel macros-panel"
       "send-msg-area send-msg-area send-msg-area send-msg-area";
   }
-  .titel {
-    grid-area: titel;
+  .title {
+    grid-area: title;
     display: relative;
     text-align: center;
     height: 10vh;
@@ -221,13 +244,13 @@
     font-size: 5vh;
     -webkit-app-region: drag;
   }
-  .titel h2 {
+  .title h2 {
     position: relative;
     top: -6vh;
     align-self: center;
   }
-  .seced-titel {
-    grid-area: seced-titel;
+  .seced-title {
+    grid-area: seced-title;
     background-color: #f1f1f1;
     color: #222831;
     -webkit-app-region: drag;

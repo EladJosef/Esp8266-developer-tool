@@ -30,9 +30,18 @@ You have 7 functions on the debug panel:
 - logfile : save the log file of your esp8266 communication 
 - exit : disconnect esp8266
 
+You have 2 functions on the log explorerr after open log-file:
+- show: Show all log data
+- auto scroll: Show the log statistics 
+
+## Screenshots from the app 
+
 <p float="left">
   <kbd>
   <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/connect.png" width="180">
+  </kbd>
+  <kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/menu.png" width="180">
   </kbd>
   <kbd>
   <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/Control.png" width="180">
@@ -43,19 +52,26 @@ You have 7 functions on the debug panel:
   <kbd>
   <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/log.png" width="180">
   </kbd>
+  <kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/upload.png" width="180">
+  </kbd>
+  <kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/stat-log.png" width="180">
+  </kbd>
+  <kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/data-log.png" width="180">
+  </kbd>
 </p>
 
 
 now you can use the control panel to test your esp8266
-## What's new ?
-- [X] Formating logfile output 
-- [X] Add menu for later features 
-- [X] design improvement (css)
-- [X] one more macro button
-- [X] clear button
 
-## Futures features for 1.2.1v
-- [ ] Logfile viewer
+## What's new in 1.2.1v ?
+- [X] Logfile viewer
+- [X] Logfile view option
+- [X] Logfile statistics option
+- [X] Menu css improvment
+- [X] logfile improvment (time and statistics)
 
 
 
