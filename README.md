@@ -34,6 +34,8 @@ You have 2 functions on the log explorerr after open log-file:
 - show: Show all log data
 - auto scroll: Show the log statistics 
 
+## Screenshots from the app 
+
 <p float="left">
   <kbd>
   <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/connect.png" width="180">
