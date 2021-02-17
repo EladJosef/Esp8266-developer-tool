@@ -39,6 +39,9 @@ You have 2 functions on the log explorerr after open log-file:
   <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/connect.png" width="180">
   </kbd>
   <kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/menu.png" width="180">
+  </kbd>
+  <kbd>
   <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/Control.png" width="180">
   </kbd>
   <kbd>
@@ -48,13 +51,10 @@ You have 2 functions on the log explorerr after open log-file:
   <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/master/img/log.png" width="180">
   </kbd>
   <kbd>
-  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/menu.png" width="180">
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/upload.png" width="180">
   </kbd>
   <kbd>
   <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/stat-log.png" width="180">
-  </kbd>
-  <kbd>
-  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/upload.png" width="180">
   </kbd>
   <kbd>
   <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/data-log.png" width="180">
