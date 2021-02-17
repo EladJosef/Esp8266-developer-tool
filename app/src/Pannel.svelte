@@ -2,7 +2,7 @@
   import Control from "./Control.svelte";
   import Menu from "./Menu.svelte";
   export let address;
-  let debug = true;
+  let debug = false;
   let current = 0;
   let just_pressed = false;
   let key;
