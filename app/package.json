@@ -1,12 +1,12 @@
 {
-  "name": "esp8266-debugger",
-  "productName": "Esp8266 debugger",
-  "version": "1.2.2",
-  "description": "Esp8266 debugger",
+  "name": "Esp8266 develop tool",
+  "productName": "Esp8266 develop tool",
+  "version": "1.2.3",
+  "description": "Esp8266 develop tool",
   "main": "public/main.js",
   "author": {
     "email": "eladyosef2003@gmail.com",
-    "name": "elad yosef"
+    "name": "EladJosef"
   },
   "scripts": {
     "build": "rollup -c",
