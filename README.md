@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/314465702463d86e7e67cb41d26b78e2950b80eb/img/banner.svg" width="1000">
+<img src="https://raw.githubusercontent.com/EladJosef/Esp8266-developer-tool/126f1b2abe30ad8c57463810e340db1f2a61f622/img/banner.svg" width="1000">
 
 # Esp8266-debugger
 debugger for Esp8266 module
