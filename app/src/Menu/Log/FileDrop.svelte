@@ -71,8 +71,8 @@
     width: 80%;
     height: 40vh;
     margin: auto;
-    border: 1vh dotted #dddddd;
-    background-color: #222831;
+    border: 1vh dotted var(--secondary-color);
+    background-color: var(--main-color);
     -webkit-app-region: no-drag;
     transition: 0.3s;
     padding-top: 20vh;
@@ -90,8 +90,8 @@
     width: 75%;
     height: 40vh;
     margin: auto;
-    border: 1vh dotted #dddddd;
-    background-color: #444f5e;
+    border: 1vh dotted var(--secondary-color);
+    background-color: var(--panel-active-file-drop);
     -webkit-app-region: no-drag;
     transition: 0.3s;
     padding-top: 20vh;
@@ -102,7 +102,7 @@
   .middel {
     position: relative;
     font-family: "Poppins", sans-serif;
-    color: #dddddd;
+    color: var(--secondary-color);
     font-size: 10vh;
     right: 50%;
     margin-top: 28vh;

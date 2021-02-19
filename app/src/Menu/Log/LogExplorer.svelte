@@ -85,13 +85,13 @@
 
   .mode-title {
     grid-area: mode-title;
-    background-color: #dddddd;
-    color: #222831;
+    background-color: var(--secondary-color);
+    color: var(--main-color);
     font-size: 5vh;
     font-family: "Poppins", sans-serif;
     -webkit-app-region: drag;
     border-style: solid;
-    border-color: #222831;
+    border-color: var(--main-color);
     border-width: 1vh;
     border-bottom-style: none;
   }
@@ -99,9 +99,9 @@
   .main-page {
     grid-area: main-page;
     border-style: solid;
-    border-color: #222831;
+    border-color: var(--main-color);
     border-width: 1vh;
-    background-color: #dddddd;
+    background-color: var(--secondary-color);
     overflow: auto;
   }
 
@@ -137,16 +137,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 0 rgb(63, 63, 63);
+    box-shadow: inset 0 0 0 var(--track-color);
     border-radius: 1vw;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgb(127, 127, 127);
+    background: var(--thumb-color);
     border-radius: 1vw;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #8b8b8b;
+    background: var(--thumb-hover-color);
   }
 </style>

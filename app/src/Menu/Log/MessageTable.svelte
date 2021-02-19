@@ -36,12 +36,12 @@
   .msg {
     font-size: 5vh;
     font-family: "Montserrat", sans-serif;
-    color: #f1f1f1;
+    color: var(--blank-color);
   }
   .snd {
-    background-color: #008891;
+    background-color: var(--table-send-msg);
   }
   .rev {
-    background-color: #00587a;
+    background-color: var(--table-accepted-msg);
   }
 </style>

@@ -3,6 +3,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 
+:root {
+  /* main colors */
+  --main-color: #222831;
+  --complementary-main-color: #30475e;
+  --secondary-color: #dddddd;
+  --blank-color: #f1f1f1;
+  --highlight-color: #f05454;
+
+  /* scroll colors */
+  --track-color: var(--blank-color);
+  --thumb-color: #888;
+  --thumb-hover-color: #555;
+
+  /* FEATURES COLORS */
+
+  /* control panel colors */
+  --active-send-msg: var(--complementary-main-color);
+  --active-accepted-msg: var(--highlight-color);
+  --active-auto-scrolling: #4caf50;
+  --active-clear-button: #54b2f0;
+  --active-log-button: #f09d54;
+  --active-exit-button: #f05454;
+
+  /* FileDrop */
+  --panel-active-file-drop: #444f5e;
+
+  /* massage table */
+  --table-send-msg: #008891;
+  --table-accepted-msg: #00587a;
+}
+
 html,
 body {
   position: relative;
@@ -11,7 +42,7 @@ body {
   padding: 0;
   margin: 0;
   user-select: none;
-  background-color: #dddddd;
+  background-color: var(--secondary-color);
 }
 
 body {
@@ -22,8 +53,8 @@ body {
 .main-title-panel {
   text-align: center;
   height: 10vh;
-  background-color: #222831;
-  color: #dddddd;
+  background-color: var(--main-color);
+  color: var(--secondary-color);
   font-family: "Poppins", sans-serif;
   font-size: 6.5vh;
   -webkit-app-region: drag;

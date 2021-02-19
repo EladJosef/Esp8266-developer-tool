@@ -47,10 +47,10 @@
   }
   table,
   td {
-    border: 1vh solid #dddddd;
+    border: 1vh solid var(--secondary-color);
     font-size: 5vh;
-    background-color: #222831;
-    color: #dddddd;
+    background-color: var(--main-color);
+    color: var(--secondary-color);
   }
   .title {
     font-size: 5vh;

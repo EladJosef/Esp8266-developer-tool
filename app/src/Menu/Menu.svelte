@@ -6,6 +6,8 @@
   const dispatch = createEventDispatcher();
 
   export let address;
+  export let has_skip;
+
   let menu_index = 0;
 
   function exit() {
@@ -18,7 +20,11 @@
     <div class="title" />
     <div class="option1">Menu</div>
     <div class="option2">
-      <div class="connect-button" on:click={() => (menu_index = 1)}>
+      <div
+        data-tooltip="Can not use before connect"
+        class={has_skip ? "unconnect-button" : "connect-button"}
+        on:click={has_skip ? () => (menu_index = 0) : () => (menu_index = 1)}
+      >
         Message Debugger
       </div>
     </div>
@@ -61,8 +67,8 @@
       "footer footer footer footer";
     height: 94vh;
     border-style: double;
-    border-color: #222831;
-    background-color: #dddddd;
+    border-color: var(--main-color);
+    background-color: var(--secondary-color);
     border-width: 3vh;
   }
 
@@ -72,7 +78,7 @@
     text-align: center;
     font-family: "Poppins", sans-serif;
     background-color: #222831;
-    color: #ffffff;
+    color: var(--blank-color);
 
     width: 100%;
     -webkit-app-region: drag;
@@ -110,7 +116,7 @@
     text-align: center;
     font-family: "Poppins", sans-serif;
     background-color: #222831;
-    color: #ffffff;
+    color: var(--blank-color);
     width: 100%;
     height: 100%;
     margin-left: 0vw;
@@ -118,8 +124,29 @@
     -webkit-app-region: no-drag;
     transition: 0.3s;
   }
+  .unconnect-button {
+    font-size: 5vh;
+    padding-top: 3vh;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    background-color: #222831;
+    color: var(--blank-color);
+    width: 100%;
+    height: 100%;
+    margin-left: 0vw;
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+    transition: 0.3s;
+  }
+  .unconnect-button:hover {
+    background-color: var(--highlight-color);
+    color: var(--secondary-color);
+    height: 100%;
+    filter: brightness(0.5);
+    cursor: not-allowed;
+  }
   .connect-button:hover {
-    background-color: #f05454;
-    color: #dddddd;
+    background-color: var(--highlight-color);
+    color: var(--secondary-color);
   }
 </style>

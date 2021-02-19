@@ -5,6 +5,7 @@
 </script>
 
 <main>
+  <!-- this is main -->
   <Pannel {address} {debug} />
 </main>
 

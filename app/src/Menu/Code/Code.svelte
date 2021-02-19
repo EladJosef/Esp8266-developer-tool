@@ -276,15 +276,15 @@ void loop() {
   }
   .line-title {
     font-size: 2.5vh;
-    color: #dddddd;
-    border: 0.1vh solid #dddddd;
+    color: var(--secondary-color);
+    border: 0.1vh solid var(--secondary-color);
     border-left-style: none;
-    background-color: #222831;
+    background-color: var(--main-color);
   }
   .data-labal {
     height: 7%;
     font-family: "Rubik", sans-serif;
-    background-color: #222831;
+    background-color: var(--main-color);
   }
   table {
     table-layout: fixed;
@@ -294,22 +294,22 @@ void loop() {
   table,
   td,
   td {
-    border: 0.1vh solid #222831;
+    border: 0.1vh solid var(--main-color);
     font-size: 5vh;
-    color: #222831;
+    color: var(--main-color);
     border-collapse: collapse;
   }
   table .line-num {
     width: 10%;
     font-family: "Rubik", sans-serif;
-    background-color: #f05454;
-    color: #dddddd;
+    background-color: var(--highlight-color);
+    color: var(--secondary-color);
   }
   table .line-num-title {
     width: 10%;
     font-family: "Rubik", sans-serif;
-    background-color: #222831;
-    color: #dddddd;
+    background-color: var(--main-color);
+    color: var(--secondary-color);
   }
   table .for {
     width: 25%;
@@ -320,7 +320,7 @@ void loop() {
   input {
     width: 98%;
     height: 98%;
-    background-color: #dddddd;
+    background-color: var(--secondary-color);
     border: none;
     font-size: 4vh;
     font-family: "Rubik", sans-serif;
