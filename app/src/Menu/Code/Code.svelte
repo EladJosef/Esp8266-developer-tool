@@ -8,6 +8,9 @@
 
   let n = 0;
   let folder_name = "skeleton_code";
+  let wifi_password = "12345678e";
+  let ssid = "Julius Caesar";
+  let run_port = 8500;
   let full_code = [
     ["", ""],
     ["", ""],
@@ -88,84 +91,73 @@
 
   function code_to_data(code) {
     return (
-      `#include <ESP8266WiFi.h>                               //| Include the Wi-Fi library
-                                                      // |
-                                                     //  |
-const char* SSID     = "Julius Caesar";             //   |The SSID (name) of the Wi-Fi network you want to connect to
-const char* PASSWORD = "12345678e";                //    |The password of the Wi-Fi network
-const int   PORT     = 8500;                      //     |
-bool blinked = true;                             //      |
-WiFiServer wifiServer(PORT);                    //       |Set listen port to 8500
-
-void wait_msg(int time){
-  delay(1000);
-  Serial.print(".");
-}
-
-void blink_led(){
-  if(blinked){
-    digitalWrite(LED_BUILTIN, HIGH);
-  }else{
-    digitalWrite(LED_BUILTIN, LOW); 
-  }
-  blinked = !blinked;
-}
+      `#include <ESP8266WiFi.h>                               //|Include the Wi-Fi library
+                                                       //|
+                                                       //|
+const char* SSID     = \"` +
+      ssid +
+      `\";                //|The SSID (name) of the Wi-Fi network you want to connect to
+const char* PASSWORD = \"` +
+      wifi_password +
+      `\";                    //|The password of the Wi-Fi network
+const int   PORT     = ` +
+      run_port +
+      `;                           //|
+WiFiServer wifiServer(PORT);                           //|Set listen port to 8500
 
 void connect_msg(IPAddress ip, int port){
-  Serial.print("\\n");
+  // print all connecting info
+  Serial.println("");
   Serial.print("Connected to WiFi on IP : ");
   Serial.println(ip);
   Serial.print("Listen on port : ");
-  Serial.print(PORT);
-  Serial.print("\\n");
+  Serial.println(PORT);
 }
 
 char* commend_msg(String msg)
 {
-  Serial.println("accept from user :\\""+msg+"\\"");
-  blink_led(); 
-` +
+  // The program API
+  Serial.println("accept from user :\""+msg+"\"");
+  ` +
       create_api(code) +
       `
   return "error-v1-unknown-command";
 }
 
 void setup() {
- 
-  Serial.begin(115200); 
-  WiFi.begin(SSID, PASSWORD);
+  Serial.begin(115200);
+  WiFi.begin(SSID, PASSWORD); // Connecting wifi
   Serial.print("Connecting..");
-  pinMode(LED_BUILTIN, OUTPUT);
   
   while (WiFi.status() != WL_CONNECTED) {
-    wait_msg(1000);
+    Serial.print(".");
+    delay(1000);
   }
   
-  connect_msg(WiFi.localIP(),PORT);
+  connect_msg(WiFi.localIP(),PORT); // Print connect data
   wifiServer.begin();
 }
- 
+
 void loop() {
   WiFiClient client = wifiServer.available();
-  String buff = "";
-  if (client) 
+  String buff = ""; // creating buffer for messages
+  if (client)
   {
     while(client.connected()>0)
     {
       while(client.available()>0)
       {
-        buff = buff + char(client.read());
+        buff = buff + char(client.read()); // Read msg
       }
       if(buff != "")
       {
-        client.print(commend_msg(buff));
-        client.stop();
+        client.print(commend_msg(buff)); // Send API result to client
+        client.stop(); // End connection
         buff = "";
       }
     }
   }
-}   
-  `
+}`
     );
   }
   function create_api(code) {
