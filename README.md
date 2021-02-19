@@ -34,6 +34,11 @@ You have 2 functions on the log explorerr after open log-file:
 - show: Show all log data
 - auto scroll: Show the log statistics 
 
+You have 1 function on the Create skeleton code mode:
+- save: create code template with leter input in table
+  - for input : used for api
+  - retrun: return string for the input that type in "for"
+
 ## Screenshots from the app 
 
 <p float="left">
@@ -61,17 +66,14 @@ You have 2 functions on the log explorerr after open log-file:
   <kbd>
   <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/data-log.png" width="180">
   </kbd>
+  <kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/code.png" width="180">
+  </kbd>
 </p>
 
 
 now you can use the control panel to test your esp8266
 
-## What's new in 1.2.1v ?
-- [X] Logfile viewer
-- [X] Logfile view option
-- [X] Logfile statistics option
-- [X] Menu css improvment
-- [X] logfile improvment (time and statistics)
-
-
+## What's new in 1.2.2v ?
+- [X] Esp8266 code generator
 
