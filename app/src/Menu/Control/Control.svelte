@@ -67,7 +67,7 @@
     massages = [];
   }
   function handleKeydown(event) {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && !edit_macro) {
       send();
     }
   }
