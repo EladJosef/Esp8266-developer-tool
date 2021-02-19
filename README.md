@@ -34,6 +34,11 @@ You have 2 functions on the log explorerr after open log-file:
 - show: Show all log data
 - auto scroll: Show the log statistics 
 
+You have 1 function on the Create skeleton code mode:
+- save: create code template with leter input in table
+  - for input : used for api
+  - retrun: return string for the input that type in "for"
+
 ## Screenshots from the app 
 
 <p float="left">
@@ -67,9 +72,5 @@ You have 2 functions on the log explorerr after open log-file:
 now you can use the control panel to test your esp8266
 
 ## What's new in 1.2.2v ?
-- [ ] Recode esp8266 code
-- [ ] Esp8266 code generator
-- [ ] Adding comments to esp8266 code and svelet files
-
-
+- [X] Esp8266 code generator
 
