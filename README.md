@@ -66,6 +66,9 @@ You have 1 function on the Create skeleton code mode:
   <kbd>
   <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/data-log.png" width="180">
   </kbd>
+  <kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/code.png" width="180">
+  </kbd>
 </p>
 
 
