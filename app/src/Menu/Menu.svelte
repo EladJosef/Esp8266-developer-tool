@@ -8,7 +8,7 @@
   export let address;
   export let has_skip;
 
-  let menu_index = 0;
+  let menu_index = 3;
 
   function exit() {
     dispatch("is_connect", false);

@@ -1,13 +1,16 @@
 <script>
+  import Notifications from "svelte-notifications";
   import Pannel from "./Pannel.svelte";
   export let address;
   export let debug;
 </script>
 
-<main>
-  <!-- this is main -->
-  <Pannel {address} {debug} />
-</main>
+<Notifications>
+  <main>
+    <!-- this is main -->
+    <Pannel {address} {debug} />
+  </main>
+</Notifications>
 
 <style>
   main {

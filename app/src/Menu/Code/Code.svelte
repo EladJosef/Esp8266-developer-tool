@@ -1,5 +1,6 @@
 <script>
-  import { NotificationDisplay, notifier } from "@beyonk/svelte-notifications";
+  import { getNotificationsContext } from "svelte-notifications";
+  const { addNotification } = getNotificationsContext();
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   const { dialog } = require("electron").remote;
@@ -39,11 +40,13 @@
     for (let i = 0; i < full_code.length; i++) {
       for (let j = 0; j < full_code.length; j++) {
         if (full_code[i][0] === full_code[j][0] && i !== j) {
-          bad_input = true;
-          notifier.danger(
-            "Duplicate input at line " + (i + 1) + " and " + (j + 1),
-            4000
-          );
+          addNotification({
+            text: "Duplicate input at line " + (i + 1) + " and " + (j + 1),
+            position: "bottom-right",
+            removeAfter: 4000,
+            type: "danger",
+          });
+
           return;
         }
       }
@@ -61,7 +64,12 @@
           } else {
             fs.mkdir(folder_path, (err) => {
               if (err) {
-                notifier.danger(err, 4000);
+                addNotification({
+                  text: err,
+                  position: "bottom-right",
+                  removeAfter: 4000,
+                  type: "danger",
+                });
                 return console.error(err);
               }
               create_file(folder_path, code_to_data(full_code));
@@ -70,7 +78,12 @@
         }
       })
       .catch((err) => {
-        notifier.danger(err, 4000);
+        addNotification({
+          text: err,
+          position: "bottom-right",
+          removeAfter: 4000,
+          type: "danger",
+        });
       });
   }
 
@@ -81,10 +94,20 @@
       { flag: "w+" },
       function (err) {
         if (err) {
-          notifier.danger(err, 4000);
+          addNotification({
+            text: err,
+            position: "bottom-right",
+            removeAfter: 4000,
+            type: "danger",
+          });
           return console.log(err);
         }
-        notifier.success("File are create (" + folder_name + ".ino)");
+        addNotification({
+          text: "File was create successfully (" + folder_name + ".ino)",
+          position: "bottom-right",
+          removeAfter: 4000,
+          type: "success",
+        });
       }
     );
   }
@@ -177,7 +200,6 @@ void loop() {
   }
 </script>
 
-<NotificationDisplay bind:this={n} />
 <div class="grid-container">
   <div class="return main-title-panel" on:click={exit}>Return</div>
   <div class="save main-title-panel" on:click={save}>Save</div>
