@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  const net = window.require("net");
   export let address;
   let massages = [];
   let temp = "";
@@ -66,7 +67,7 @@
     massages = [];
   }
   function handleKeydown(event) {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && !edit_macro) {
       send();
     }
   }
@@ -103,20 +104,8 @@
     }
   }
 
-  function m1() {
-    temp = macros[0];
-  }
-  function m2() {
-    temp = macros[1];
-  }
-  function m3() {
-    temp = macros[2];
-  }
-  function m4() {
-    temp = macros[3];
-  }
-  function m5() {
-    temp = macros[4];
+  function use_macro(index) {
+    temp = macros[index];
   }
 
   function exit() {
@@ -126,7 +115,7 @@
 
   function accept(data, tcp) {
     statistics.accept_msg += 1;
-    var enc = new TextDecoder("utf-8");
+    let enc = new TextDecoder("utf-8");
     let msg = enc.decode(data["buffer"]);
     let aaccept_time = Date.now();
     statistics.sum_time_between += aaccept_time - send_time;
@@ -135,7 +124,6 @@
   }
 
   function connect(msg) {
-    const net = window.require("net");
     const ip = `${address[0]}.${address[1]}.${address[2]}.${address[3]}`;
     const port = Number(address[4]);
     let tcp = new net.Socket();
@@ -159,11 +147,15 @@
       <tbody>
         <tr>
           <td
-            style="background-color:{auto_scroll ? '#4CAF50' : '#30475e'}"
+            style="background-color:{auto_scroll
+              ? 'var(--active-auto-scrolling)'
+              : 'var(--complementary-main-color)'}"
             on:click={auto_scroll_me}>Auto Scroll</td
           >
           <td
-            style="background-color:{edit_macro ? '#f05454' : '#30475e'}"
+            style="background-color:{edit_macro
+              ? 'var(--highlight-color)'
+              : 'var(--complementary-main-color)'}"
             class="set-macro"
             on:click={edit_on}>Set Macros</td
           >
@@ -173,8 +165,8 @@
             <td><input bind:value={macros[0]} /></td>
             <td><input bind:value={macros[1]} /></td>
           {:else}
-            <td on:click={m1}>{macros[0]}</td>
-            <td on:click={m2}>{macros[1]}</td>
+            <td on:click={() => use_macro(0)}>{macros[0]}</td>
+            <td on:click={() => use_macro(1)}>{macros[1]}</td>
           {/if}
         </tr>
         <tr>
@@ -182,15 +174,15 @@
             <td><input bind:value={macros[2]} /></td>
             <td><input bind:value={macros[3]} /></td>
           {:else}
-            <td on:click={m3}>{macros[2]}</td>
-            <td on:click={m4}>{macros[3]}</td>
+            <td on:click={() => use_macro(2)}>{macros[2]}</td>
+            <td on:click={() => use_macro(3)}>{macros[3]}</td>
           {/if}
         </tr>
         <tr>
           {#if edit_macro}
             <td><input bind:value={macros[4]} /></td>
           {:else}
-            <td on:click={m5}>{macros[4]}</td>
+            <td on:click={() => use_macro(4)}>{macros[4]}</td>
           {/if}
           <td class="clear" on:click={clear}>clear</td>
         </tr>
@@ -222,7 +214,7 @@
     grid-template-rows: 0.9fr 0.8fr 1.1fr 1.1fr 1.1fr 1.1fr 0.9fr;
     gap: 0 0;
     height: 100vh;
-    background-color: #222831;
+    background-color: var(--main-color);
     grid-template-areas:
       "title title title title"
       "msg-panel msg-panel seced-title seced-title"
@@ -238,8 +230,8 @@
     text-align: center;
     height: 10vh;
     width: 100%;
-    background-color: #222831;
-    color: #dddddd;
+    background-color: var(--main-color);
+    color: var(--secondary-color);
     font-family: "Poppins", sans-serif;
     font-size: 5vh;
     -webkit-app-region: drag;
@@ -251,8 +243,8 @@
   }
   .seced-title {
     grid-area: seced-title;
-    background-color: #f1f1f1;
-    color: #222831;
+    background-color: var(--blank-color);
+    color: var(--main-color);
     -webkit-app-region: drag;
     font-size: 2.5vh;
     font-family: "Poppins", sans-serif;
@@ -262,8 +254,8 @@
   }
   .msg-panel {
     grid-area: msg-panel;
-    background-color: #dddddd;
-    color: #dddddd;
+    background-color: var(--secondary-color);
+    color: var(--secondary-color);
     font-size: 5vh;
     font-family: "Montserrat", sans-serif;
     direction: rtl;
@@ -271,7 +263,7 @@
   }
   .macros-panel {
     grid-area: macros-panel;
-    background-color: #222831;
+    background-color: var(--main-color);
   }
   table.fixed {
     table-layout: fixed;
@@ -279,8 +271,8 @@
     width: 100%;
   }
   .panel td {
-    background-color: #30475e;
-    color: #f1f1f1;
+    background-color: var(--complementary-main-color);
+    color: var(--blank-color);
     font-size: 3vh;
     font-family: "Poppins", sans-serif;
   }
@@ -289,13 +281,13 @@
     filter: brightness(1.1);
   }
   .clear:hover {
-    background-color: #54b2f0;
+    background-color: var(--active-clear-button);
   }
   .exit:hover {
-    background-color: #f05454;
+    background-color: var(--active-exit-button);
   }
   .log-file:hover {
-    background-color: #f09d54;
+    background-color: var(--active-log-button);
   }
   .input_text {
     font-family: "Poppins", sans-serif;
@@ -303,14 +295,14 @@
     padding: 8px;
     display: block;
     border: none;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--blank-color);
     width: 100%;
     height: 6vh;
     font-size: 3vh;
   }
   button.send {
-    background-color: #222831;
-    color: #dddddd;
+    background-color: var(--main-color);
+    color: var(--secondary-color);
     border: none;
     font-family: "Poppins", sans-serif;
     font-size: 3vh;
@@ -318,18 +310,18 @@
     height: 6vh;
   }
   .massage1 {
-    background-color: #30475e;
+    background-color: var(--active-send-msg);
     border-style: solid;
     border-width: 1px;
     word-wrap: break-word;
-    border-color: #222831;
+    border-color: var(--main-color);
   }
   .massage2 {
-    background-color: #f05454;
+    background-color: var(--active-accepted-msg);
     border-style: solid 1px;
     border-width: 1px;
     word-wrap: break-word;
-    border-color: #222831;
+    border-color: var(--main-color);
   }
   /* width */
   ::-webkit-scrollbar {
@@ -338,16 +330,16 @@
 
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--track-color);
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: var(--thumb-color);
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: var(--thumb-hover-color);
   }
 </style>
