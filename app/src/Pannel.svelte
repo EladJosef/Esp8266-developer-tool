@@ -1,8 +1,7 @@
 <script>
-  import Control from "./Control.svelte";
-  import Menu from "./Menu.svelte";
+  import Menu from "./Menu/Menu.svelte";
   export let address;
-  let debug = false;
+  export let debug;
   let current = 0;
   let just_pressed = false;
   let key;

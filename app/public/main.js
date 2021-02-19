@@ -6,7 +6,7 @@ app.on('ready', () => {
 		width: 800,
 		height: 500,
 		frame: false,
-		webPreferences: { nodeIntegration: true }
+		webPreferences: { nodeIntegration: true,enableRemoteModule: true, }
 	})
 
 	window.loadFile(`${path.join(__dirname, '/index.html')}`)

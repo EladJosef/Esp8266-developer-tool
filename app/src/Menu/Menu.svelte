@@ -1,7 +1,8 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import Control from "./Control.svelte";
-  import LogExplorer from "./LogExplorer.svelte";
+  import Control from "./Control/Control.svelte";
+  import LogExplorer from "./Log/LogExplorer.svelte";
+  import Code from "./Code/Code.svelte";
   const dispatch = createEventDispatcher();
 
   export let address;
@@ -27,7 +28,9 @@
       </div>
     </div>
     <div class="option4">
-      <div class="connect-button">&nbsp</div>
+      <div class="connect-button" on:click={() => (menu_index = 3)}>
+        Skeleton Code Generator
+      </div>
     </div>
     <div class="exit">
       <div class="connect-button" on:click={exit}>Exit</div>
@@ -39,7 +42,7 @@
 {:else if menu_index == 2}
   <LogExplorer on:menu_index={(event) => (menu_index = event.detail)} />
 {:else}
-  ?
+  <Code on:menu_index={(event) => (menu_index = event.detail)} />
 {/if}
 
 <style>

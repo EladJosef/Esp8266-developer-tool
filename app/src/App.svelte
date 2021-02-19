@@ -1,10 +1,11 @@
 <script>
   import Pannel from "./Pannel.svelte";
   export let address;
+  export let debug;
 </script>
 
 <main>
-  <Pannel {address} />
+  <Pannel {address} {debug} />
 </main>
 
 <style>
