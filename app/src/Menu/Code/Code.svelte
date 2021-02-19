@@ -112,16 +112,17 @@ void blink_led(){
 }
 
 void connect_msg(IPAddress ip, int port){
-  Serial.print("\n");
+  Serial.print("\\n");
   Serial.print("Connected to WiFi on IP : ");
   Serial.println(ip);
   Serial.print("Listen on port : ");
   Serial.print(PORT);
+  Serial.print("\\n");
 }
 
 char* commend_msg(String msg)
 {
-  Serial.println("accept from user :\""+msg+"\"");
+  Serial.println("accept from user :\\""+msg+"\\"");
   blink_led(); 
 ` +
       create_api(code) +
@@ -169,6 +170,7 @@ void loop() {
   }
   function create_api(code) {
     let buffer = "";
+    code = [...code, ["on?", "yes"]];
 
     for (let i = 0; i < code.length; i++) {
       buffer +=
