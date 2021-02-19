@@ -7,7 +7,6 @@
   const path = require("path");
   const fs = require("fs");
 
-  let n = 0;
   let folder_name = "skeleton_code";
   let wifi_password = "12345678e";
   let ssid = "Julius Caesar";
