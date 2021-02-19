@@ -74,6 +74,8 @@ You have 1 function on the Create skeleton code mode:
 
 now you can use the control panel to test your esp8266
 
-## What's new in 1.2.2v ?
-- [X] Esp8266 code generator
+## What's new in 1.2.3v ?
+-[X] Significant code improvement
+-[X] Improving Performance
+-[X] Fix bugs
 
