@@ -17,15 +17,15 @@ npm i
 npm start
 ```
 
-compile the code from `/Esp8266/` dir and upload it to your Esp8266, I recommend using the `Arduino IDE` to compile and upload.
+compile the code from `/skeleton_code/` dir and upload it to your Esp8266, I recommend using the `Arduino IDE` to compile and upload.
 
 # usage
 
 ## connect
 
 Enter your local Esp8266 address (IP: port)
-
 You can use the keyboard Numpad and arrows to input the address.
+Or jest skip if you dont have esp8266 that run the code.
 
 ## how to use
 
