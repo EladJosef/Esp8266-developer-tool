@@ -262,6 +262,8 @@
     color: var(--thumb-hover-color);
     padding: 1vh;
     position: absolute;
+    top: 90vh;
+    font-size: 3vh;
   }
 
   div.dark-mode-button:hover {
