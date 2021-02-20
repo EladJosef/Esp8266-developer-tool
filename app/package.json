@@ -1,7 +1,7 @@
 {
   "name": "Esp8266-develop-tool",
   "productName": "Esp8266 develop tool",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Esp8266 develop tool",
   "main": "public/main.js",
   "author": {

@@ -315,6 +315,7 @@
     border-width: 1px;
     word-wrap: break-word;
     border-color: var(--main-color);
+    color: aliceblue;
   }
   .massage2 {
     background-color: var(--active-accepted-msg);
@@ -322,6 +323,7 @@
     border-width: 1px;
     word-wrap: break-word;
     border-color: var(--main-color);
+    color: aliceblue;
   }
   /* width */
   ::-webkit-scrollbar {
