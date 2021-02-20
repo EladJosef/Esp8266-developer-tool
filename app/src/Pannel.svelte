@@ -17,6 +17,7 @@
   let is_connect = debug || false;
   let has_click = false;
   let has_skip = true;
+  let dark_mode_state = false;
 
   function handleKeydown(event) {
     // handleKeydown used for find keydowns that
@@ -153,6 +154,10 @@
     has_click = false;
     has_skip = true;
   }
+  function dark_mode() {
+    document.body.classList.toggle("dark-theme");
+    dark_mode_state = !dark_mode_state;
+  }
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
@@ -164,7 +169,7 @@
       {has_skip}
     />
   {:else}
-    <h2>Connect esp8266</h2>
+    <h2>Connect module</h2>
     <div style="margin-top: -10vh;">
       {#each address as address, i}
         <h1
@@ -189,6 +194,9 @@
     {:else}
       <h3 on:click={skip_connect} class="skip">Skip connect</h3>
     {/if}
+    <div class="dark-mode-button" on:click={dark_mode}>
+      {dark_mode_state ? "light" : "dark"} mode
+    </div>
   {/if}
 </main>
 
@@ -245,5 +253,18 @@
   }
   main {
     text-align: center;
+  }
+
+  div.dark-mode-button {
+    -webkit-app-region: no-drag;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--highlight-color);
+    color: var(--thumb-hover-color);
+    padding: 1vh;
+    position: absolute;
+  }
+
+  div.dark-mode-button:hover {
+    cursor: pointer;
   }
 </style>

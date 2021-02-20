@@ -8,7 +8,7 @@
   export let address;
   export let has_skip;
 
-  let menu_index = 3;
+  let menu_index = 0;
 
   function exit() {
     dispatch("is_connect", false);
@@ -77,7 +77,7 @@
     font-size: 10vh;
     text-align: center;
     font-family: "Poppins", sans-serif;
-    background-color: #222831;
+    background-color: var(--main-color);
     color: var(--blank-color);
 
     width: 100%;
@@ -115,7 +115,7 @@
     padding-top: 3vh;
     text-align: center;
     font-family: "Poppins", sans-serif;
-    background-color: #222831;
+    background-color: var(--main-color);
     color: var(--blank-color);
     width: 100%;
     height: 100%;
@@ -129,7 +129,7 @@
     padding-top: 3vh;
     text-align: center;
     font-family: "Poppins", sans-serif;
-    background-color: #222831;
+    background-color: var(--main-color);
     color: var(--blank-color);
     width: 100%;
     height: 100%;

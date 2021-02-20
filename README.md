@@ -1,14 +1,18 @@
 <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/314465702463d86e7e67cb41d26b78e2950b80eb/img/banner.svg" width="1000">
 
-# Esp8266-debugger
-debugger for Esp8266 module
+# Esp8266 Developer Tool
+
+Is a tool that help you develop code for esp8266
 
 # install
+
 Go to `/app/` dir, open terminal and run with npm
+
 ```node
 npm i
 npm start
 ```
+
 compile the code from `/Esp8266/` dir and upload it to your Esp8266, I recommend using the `Arduino IDE` to compile and upload
 
 # usage
@@ -17,29 +21,32 @@ compile the code from `/Esp8266/` dir and upload it to your Esp8266, I recommend
 
 Enter your local Esp8266 address (IP: port)
 
-
 You can use the keyboard Numpad and arrows to input the address.
 
 ## how to use
+
 You have 7 functions on the debug panel:
+
 - send: send a string to the esp8266 and print result
-- auto scroll: scroll automatically to the end of the log 
-- edit macros: give you the option to edit macros 
-- five macros buttons: macro is a const string that you can reuse instead of retyping every time 
+- auto scroll: scroll automatically to the end of the log
+- edit macros: give you the option to edit macros
+- five macros buttons: macro is a const string that you can reuse instead of retyping every time
 - clear : clear dialogue from screen
-- logfile : save the log file of your esp8266 communication 
+- logfile : save the log file of your esp8266 communication
 - exit : disconnect esp8266
 
 You have 2 functions on the log explorerr after open log-file:
+
 - show: Show all log data
-- auto scroll: Show the log statistics 
+- auto scroll: Show the log statistics
 
 You have 1 function on the Create skeleton code mode:
+
 - save: create code template with leter input in table
   - for input : used for api
   - retrun: return string for the input that type in "for"
 
-## Screenshots from the app 
+## Screenshots from the app
 
 <p float="left">
   <kbd>
@@ -71,11 +78,10 @@ You have 1 function on the Create skeleton code mode:
   </kbd>
 </p>
 
-
 now you can use the control panel to test your esp8266
 
 ## What's new in 1.2.3v ?
-- [X] Significant code improvement 
-- [X] Improving Performance 
-- [X] Fix bugs 
 
+- [x] Significant code improvement
+- [x] Improving Performance
+- [x] Fix bugs

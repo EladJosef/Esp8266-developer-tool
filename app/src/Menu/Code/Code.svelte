@@ -8,9 +8,11 @@
   const fs = require("fs");
 
   let folder_name = "skeleton_code";
-  let wifi_password = "12345678e";
-  let ssid = "Julius Caesar";
+  let wifi_password = "None";
+  let ssid = "None";
   let run_port = 8500;
+  let settings_has_clicked = false;
+
   let full_code = [
     ["", ""],
     ["", ""],
@@ -39,16 +41,15 @@
     for (let i = 0; i < full_code.length; i++) {
       for (let j = 0; j < full_code.length; j++) {
         if (full_code[i][0] === full_code[j][0] && i !== j) {
-          addNotification({
-            text: "Duplicate input at line " + (i + 1) + " and " + (j + 1),
-            position: "bottom-right",
-            removeAfter: 4000,
-            type: "danger",
-          });
-
-          return;
+          return input_error(
+            "Duplicate input at line " + (i + 1) + " and " + (j + 1)
+          );
         }
       }
+    }
+
+    if (!set_settings()) {
+      return;
     }
 
     dialog
@@ -63,13 +64,7 @@
           } else {
             fs.mkdir(folder_path, (err) => {
               if (err) {
-                addNotification({
-                  text: err,
-                  position: "bottom-right",
-                  removeAfter: 4000,
-                  type: "danger",
-                });
-                return console.error(err);
+                return input_error(err);
               }
               create_file(folder_path, code_to_data(full_code));
             });
@@ -77,12 +72,7 @@
         }
       })
       .catch((err) => {
-        addNotification({
-          text: err,
-          position: "bottom-right",
-          removeAfter: 4000,
-          type: "danger",
-        });
+        return input_error(err);
       });
   }
 
@@ -93,13 +83,7 @@
       { flag: "w+" },
       function (err) {
         if (err) {
-          addNotification({
-            text: err,
-            position: "bottom-right",
-            removeAfter: 4000,
-            type: "danger",
-          });
-          return console.log(err);
+          return input_error(err);
         }
         addNotification({
           text: "File was create successfully (" + folder_name + ".ino)",
@@ -197,6 +181,43 @@ void loop() {
 
     return buffer;
   }
+
+  function set_settings() {
+    if (!(ssid.length > 0)) {
+      return input_error("No SSID was input");
+    }
+    if (!(wifi_password.length > 0)) {
+      return input_error("No WiFi password was input");
+    }
+    if (!(String(run_port).length > 0)) {
+      return input_error("No Port was input");
+    }
+    if (!isNumeric(run_port)) {
+      return input_error("Port need to be a number");
+    }
+    if (run_port > 65535 || run_port < 1) {
+      return input_error("Port need to be in the range 1-65535");
+    }
+    if (!folder_name.length > 0) {
+      return input_error("No File name was input");
+    }
+    return true;
+  }
+
+  function input_error(input) {
+    addNotification({
+      text: input,
+      position: "bottom-right",
+      removeAfter: 4000,
+      type: "danger",
+    });
+    return false;
+  }
+
+  function isNumeric(str) {
+    if (typeof str != "string") return false;
+    return !isNaN(str) && !isNaN(parseFloat(str));
+  }
 </script>
 
 <div class="grid-container">
@@ -205,32 +226,68 @@ void loop() {
   <div class="title main-title-panel">Skeleton code generator</div>
   <div class="liners main-title-panel">
     <span style="cursor: context-menu;">{full_code.length}</span>
+    <span style="cursor: context-menu;">|</span>
     <span on:click={add_line}>+</span>
     <span on:click={remove_line}>-</span>
+    <span style="cursor: context-menu;">|</span>
+    <span style="padding-right:4vh">&nbsp;</span>
+    <img
+      class="settings"
+      on:click={() => (settings_has_clicked = !settings_has_clicked)}
+      src={!settings_has_clicked ? "./icon-settings.svg" : "./icon-code.png"}
+      alt=""
+    />
   </div>
   <div class="code-area">
-    <table>
-      <table style="width: 100%;">
+    {#if settings_has_clicked}
+      <table>
         <tbody>
-          <tr class="data-labal">
-            <td class="line-num-title line-title">line numer</td>
-            <td class="for line-title">For</td>
-            <td class="run line-title">Return</td>
+          <tr>
+            <td class="settings_titel">Properties</td>
+            <td class="settings_titel">Values</td>
           </tr>
-          {#each full_code as line, i}
-            <tr>
-              <td class="line-num">{i + 1}</td>
-              <td class="for">
-                <input type="text" bind:value={full_code[i][0]} />
-              </td>
-              <td class="run">
-                <input type="text" bind:value={full_code[i][1]} />
-              </td>
-            </tr>
-          {/each}
+          <tr>
+            <td class="properties">SSID </td>
+            <td><input type="text" bind:value={ssid} /> </td>
+          </tr>
+          <tr>
+            <td class="properties">WiFi password </td>
+            <td><input type="text" bind:value={wifi_password} /> </td>
+          </tr>
+          <tr>
+            <td class="properties">Port </td>
+            <td><input type="text" bind:value={run_port} /> </td>
+          </tr>
+          <tr>
+            <td class="properties">File name </td>
+            <td><input type="text" bind:value={folder_name} /> </td>
+          </tr>
         </tbody>
       </table>
-    </table>
+    {:else}
+      <table>
+        <table style="width: 100%;">
+          <tbody>
+            <tr class="data-labal">
+              <td class="line-num-title line-title">line numer</td>
+              <td class="for line-title">For</td>
+              <td class="run line-title">Return</td>
+            </tr>
+            {#each full_code as line, i}
+              <tr>
+                <td class="line-num">{i + 1}</td>
+                <td class="for">
+                  <input type="text" bind:value={full_code[i][0]} />
+                </td>
+                <td class="run">
+                  <input type="text" bind:value={full_code[i][1]} />
+                </td>
+              </tr>
+            {/each}
+          </tbody>
+        </table>
+      </table>
+    {/if}
   </div>
 </div>
 
@@ -345,5 +402,34 @@ void loop() {
     border: none;
     font-size: 4vh;
     font-family: "Rubik", sans-serif;
+    color: var(--thumb-hover-color);
+  }
+  img {
+    width: 5vh;
+    position: absolute;
+    filter: invert(100%);
+    margin-top: 2.5vh;
+    margin-left: -3.75vw;
+  }
+  .settings {
+    -webkit-transition: -webkit-transform 0.8s ease-in-out;
+    transition: transform 0.8s ease-in-out;
+    text-align: center;
+    display: inline;
+  }
+  .settings:hover {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    cursor: pointer;
+  }
+  .settings_titel {
+    background: var(--main-color);
+    color: var(--blank-color);
+    font-family: "Rubik", sans-serif;
+  }
+  .properties {
+    font-family: "Poppins", sans-serif;
+    text-align: left;
+    padding-left: 2vh;
   }
 </style>
