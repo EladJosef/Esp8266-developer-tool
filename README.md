@@ -2,7 +2,11 @@
 
 # Esp8266 Developer Tool
 
-Is a tool that help you develop code for esp8266
+`Esp8266 Developer Tool` Is an electron app that help you develop code for esp8266
+Built to allow simple development for simple api applications for esp8266 or any
+other controller that can support wireless communication.
+
+*The app are follows the KISS principle (keep it simple, stupid)* 
 
 # install
 
@@ -13,7 +17,7 @@ npm i
 npm start
 ```
 
-compile the code from `/Esp8266/` dir and upload it to your Esp8266, I recommend using the `Arduino IDE` to compile and upload
+compile the code from `/Esp8266/` dir and upload it to your Esp8266, I recommend using the `Arduino IDE` to compile and upload.
 
 # usage
 
@@ -25,27 +29,38 @@ You can use the keyboard Numpad and arrows to input the address.
 
 ## how to use
 
+### Opening Page and menu
+After skip connecting, your enters the menu and have the following options : 
+
+### Debug panel :
 You have 7 functions on the debug panel:
 
-- send: send a string to the esp8266 and print result
-- auto scroll: scroll automatically to the end of the log
-- edit macros: give you the option to edit macros
-- five macros buttons: macro is a const string that you can reuse instead of retyping every time
-- clear : clear dialogue from screen
-- logfile : save the log file of your esp8266 communication
-- exit : disconnect esp8266
+- send: send a string to the esp8266 and print result.
+- auto scroll: scroll automatically to the end of the log.
+- edit macros: give you the option to edit macros.
+- five macros buttons: macro is a const string that you can reuse instead of retyping every time.
+- clear : clear dialogue from screen.
+- logfile : save the log file of your esp8266 communication.
+- exit : disconnect esp8266.
 
+### Log explorerr panel
 You have 2 functions on the log explorerr after open log-file:
 
-- show: Show all log data
-- auto scroll: Show the log statistics
+- show: Show all log data.
+- auto scroll: Show the log statistics.
 
+### Create skeleton code panel
 You have 1 function on the Create skeleton code mode:
 
-- save: create code template with leter input in table
-  - for input : used for api
-  - retrun: return string for the input that type in "for"
-  - settings: used for set ssid, wifi password, port and file name
+- save: create code template with leter input in table.
+  - for input : used for api.
+  - retrun: return string for the input that type in "for".
+  - settings: used for set ssid, wifi password, port and file name.
+
+### After load
+After loading the code you can connect with the address and port and start debugging,
+without a connection you will not be able to enter the debug panel.
+
 
 ## Screenshots from the app
 
