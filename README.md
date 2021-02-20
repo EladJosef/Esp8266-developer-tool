@@ -45,6 +45,7 @@ You have 1 function on the Create skeleton code mode:
 - save: create code template with leter input in table
   - for input : used for api
   - retrun: return string for the input that type in "for"
+  - settings: used for set ssid, wifi password, port and file name
 
 ## Screenshots from the app
 
@@ -76,12 +77,16 @@ You have 1 function on the Create skeleton code mode:
   <kbd>
   <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-debugger/develop/img/code.png" width="180">
   </kbd>
+  <kbd>
+  <img src="https://raw.githubusercontent.com/EladJosef/Esp8266-developer-tool/develop/img/settings.png" width="180">
+  </kbd>
 </p>
 
 now you can use the control panel to test your esp8266
 
-## What's new in 1.2.3v ?
+## What's new in 1.2.4v ?
 
+- [x] Dark mode
 - [x] Significant code improvement
 - [x] Improving Performance
-- [x] Fix bugs
+- [x] Fix bugs 
