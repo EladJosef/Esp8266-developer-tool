@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>                               //|Include the Wi-Fi library
                                                        //|
                                                        //|
-const char* SSID     = "Julius Caesar";                //|The SSID (name) of the Wi-Fi network you want to connect to
-const char* PASSWORD = "12345678e";                    //|The password of the Wi-Fi network
+const char* SSID     = "None";                //|The SSID (name) of the Wi-Fi network you want to connect to
+const char* PASSWORD = "None";                    //|The password of the Wi-Fi network
 const int   PORT     = 8500;                           //|
 WiFiServer wifiServer(PORT);                           //|Set listen port to 8500
 
@@ -21,23 +21,23 @@ char* commend_msg(String msg)
   Serial.println("accept from user :""+msg+""");
   	if(msg.equals("A"))
 	{
-		return "option A selected";
+		return "option a";
 	}
 	if(msg.equals("B"))
 	{
-		return "option B selected";
+		return "option b";
 	}
 	if(msg.equals("C"))
 	{
-		return "option C selected";
+		return "option c";
 	}
 	if(msg.equals("D"))
 	{
-		return "option D selected";
+		return "option d";
 	}
 	if(msg.equals("E"))
 	{
-		return "option E selected";
+		return "option e";
 	}
 	if(msg.equals("on?"))
 	{

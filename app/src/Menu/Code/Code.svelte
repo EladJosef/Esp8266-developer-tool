@@ -10,7 +10,7 @@
   let folder_name = "skeleton_code";
   let wifi_password = "None";
   let ssid = "None";
-  let run_port = 8500;
+  let run_port = "8500";
   let settings_has_clicked = false;
 
   let full_code = [
