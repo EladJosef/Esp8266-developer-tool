@@ -2,9 +2,8 @@
 
 # Esp8266 Developer Tool
 
-`Esp8266 Developer Tool` Is an electron app that help you develop code for esp8266
-Built to allow simple development for simple api applications for esp8266 or any
-other controller that can support wireless communication.
+`Esp8266 Developer Tool` Is an electron app that help you develop code for esp8266 modules. <br />
+Built to allow simple development for simple api applications for esp8266 or any other controller that can support wireless communication.
 
 *The app are follows the KISS principle (keep it simple, stupid)* 
 
