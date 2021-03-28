@@ -10,6 +10,10 @@ other controller that can support wireless communication.
 
 # install
 
+Download [here](https://github.com/EladJosef/Esp8266-developer-tool/releases/download/v1.2.4/Esp8266.develop.tool.Setup.1.2.4.exe) from github releases.
+
+OR
+
 Go to `/app/` dir, open terminal and run with npm
 
 ```node
